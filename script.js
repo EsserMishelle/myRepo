@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   for (let i = 0; i < spTitle.length; i++) {
     spTitle[i].style.fontSize = "2rem";
     spTitle[i].style.color = "yellow";
-    // spTitle[i].style.backgroundColor ="orange";
+    spTitle[i].style.backgroundColor ="green";
   }
 
   // Part 5
@@ -57,17 +57,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   const pastRacesPlaces = document.querySelectorAll("#past-races li");
   const cityToRemove = ["Chicago", "chicago"];
-
-  //doesn't work
-  // Array.from(pastRacesPlaces).forEach(race => {
-  //   console.log(race.textContent.toLowerCase()); // Log the lowercase text for debugging
-  //   if (cityToRemove.includes(race.textContent.toLowerCase())) {
-  //     console.log('Removing:', race.textContent); // Log the removal for debugging
-  //     race.parentNode.removeChild(race);
-  //   }
-  // });
-
-  //forEach solution
+  
+  
+      //forEach solution
   //   const pastRacesPlaces = document.querySelectorAll('#past-races li');
   //   const cityToRemove = ['Chicago'];
   //   // pastRacesPlaces.forEach(race => {
@@ -81,27 +73,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
       console.log("Removing:", pastRacesPlaces[i].textContent);
       pastRacesPlaces[i].remove();
     }
-
+  //removing only Dubai or only 1 city
+  // for (let i = 0; i < pastRacesPlaces.length; i++)
+  // if (pastRacesPlaces[i].textContent ==='Dubai') {
+  //   console.log("Removing:", pastRacesPlaces[i].textContent);
+  //   pastRacesPlaces[i].remove();
+  // }
+  
   // Part 6
   // Let's add to DOM's Past Races list. Create a new <li>element, change the new <li>text to the name of a city, and append it to the Past Races list.
 
-  const newCity = document.createElement("li");
-  const DCNode = document.createTextNode("Washington DC");
-  newCity.appendChild(DCNode);
-  document.getElementById("past-races").append(DCNode);
+  const cityList = document.createElement("li");
+  const cityDC = document.createTextNode("Washington DC");
+  cityList.appendChild(cityDC);
+  document.getElementById("past-races").append(cityDC);
 
   // Part 7
   // Create a new .blog-postcorresponding to the new city added in Part 6. You will have to create a new <div>with class of .blog-post, a new <h2>with text, and a new <p>with some text. Think about what order you want to create the elements, and what order you want to append them in.
   const dcBlogPost = document.createElement("div");
   dcBlogPost.classList.add("blog-post", "purple");
 
-  // dcBlogPost.innerHTML =`<h1>Washington DC</h1>
-  // <p>Washington DC is the capital of the United States of America.</p>`;
-  // console.log(dcBlogPost.innerHTML)
-
-  const dcBlogPosth1Text = document.createTextNode("Washington DC");
-  const dcBlogPostTitleNode = document.createTextNode("---yeah"); //what is this?
-  // dcBlogPost.textContent = "I didn't meet the Pesident in the White House";//smaller font and on top of the title
   const h1 = document.createElement("h1");
   h1.textContent = "Washinton D.C";
   const p = document.createElement("p");
@@ -164,14 +155,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const element = document.querySelectorAll(".blog-post.purple");
   element.forEach(function(element) {
     element.addEventListener("mouseout", function(event) {
-      // element.classList.toggle("purple");
-      element.classList.toggle("red");
+      element.classList.toggle("purple");
+      // element.classList.toggle("red");
     });
   })
   element.forEach(function(element) {
     element.addEventListener("mouseenter", function(event) {
-      element.classList.toggle("purple");
-      // element.classList.toggle("red");
+      // element.classList.toggle("purple");
+      element.classList.toggle("red");
     });
   })
 
