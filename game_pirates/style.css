@@ -1,0 +1,136 @@
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+  /*  background-image: url('assets/oceanMoving5.gif'); */
+    background-image: url('assets/oceanMoving4.gif') ;
+    /* opacity: .1; */
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: slowBackground 40000s infinite;/* duration timing-function delay iteration-count direction fill-mode; */
+}
+
+@keyframes slowBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+@font-face {
+        font-family: "Rustic-dyJl";
+        src: url('/assets/Rustic-dyJl.ttf');
+    }
+/* @font-face {
+        font-family: "TexasCrustPersonalUseReg-w1nrw";
+        src: url('/assets/TexasCrustPersonalUseReg-w1nrw.ttf');
+    } */
+
+    h1 {
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ; */
+    font-family:'Rustic-dyJl' ;
+    line-height: 0.2;
+    text-align:center;
+    font-size: 100px;
+    font-weight: 50px;
+    color: rgba(255, 25, 0, 0.84);
+    
+}
+
+.intro {
+    /* font-family:'Rustic-dyJl' ; */
+    text-align: center;
+    line-height: 0.1;
+    font-size: 40px;
+    font-weight: bolder;
+    /* color:  white; */
+    color:  rgb(255, 204, 0);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.actions button {
+    padding: 8px 16px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: purple;
+    color: white;
+}
+
+.grid-container {
+    display:grid;
+    justify-content: center;
+    grid-gap: 10px;
+    grid-template-columns: repeat(6, 140px);
+    grid-template-rows: repeat(2, calc(140px /2 *3)) ;
+}
+
+.card {
+    height: calc(140px /2*3);
+    width: 140px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+}
+
+.front-image {
+    width: 60px;
+    height: 60px;
+}
+
+.card.flipped {
+    transform: rotateY(190deg);
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 10px;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+}
+
+.card .front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+}
+
+.card .back {
+    background-image: url("https://th.bing.com/th/id/OIP.etxBm6zq_xJEHJNeTVtjbwHaHa?pid=ImgDet&w=190&h=190&c=7");
+    background-position: center center;
+    background-size: cover;
+    backface-visibility: hidden;
+}
+
+/* .game-modal {
+    position: fixed;
+    left: 0; 
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity:0;
+    z-index: 999;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.game-modal.show{
+    opacity:0;
+    z-index: 999;
+    display:flex;
+} */
