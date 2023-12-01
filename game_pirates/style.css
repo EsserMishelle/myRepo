@@ -19,7 +19,6 @@ body {
         background-position: 100% 0;
     }
 }
-
 @font-face {
         font-family: "Rustic-dyJl";
         src: url('/assets/Rustic-dyJl.ttf');
@@ -29,7 +28,7 @@ body {
         src: url('/assets/TexasCrustPersonalUseReg-w1nrw.ttf');
     } */
 
-    h1 {
+h1 {
     /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ; */
     font-family:'Rustic-dyJl' ;
     line-height: 0.2;
@@ -39,7 +38,10 @@ body {
     color: rgba(255, 25, 0, 0.84);
     
 }
-
+#piece-image {
+    width: auto;
+    height: fit-content;
+}
 .intro {
     /* font-family:'Rustic-dyJl' ; */
     text-align: center;
@@ -55,7 +57,7 @@ body {
     justify-content: center;
 }
 
-.actions button {
+.actions #btn-restart {
     padding: 8px 16px;
     font-size: 30px;
     border-radius: 10px;
@@ -63,6 +65,51 @@ body {
     color: white;
 }
 
+.actions #btn-play {
+    padding: 8px 16px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: teal;
+    color: white;
+}
+.wrapper {
+    height: 150px;
+    width: 840px;
+    border-radius: 0px;
+    background: #fff;
+    display: flex;
+    padding: 0px 0px;
+    align-items: center;
+    border: 1px solid #0069d9;
+    justify-content: space-evenly;
+    
+}
+.wrapper{
+    font-size: xx-large;
+}
+.wrapper .option{
+    /* font: 20px sans-serif; */
+    /* font-size: 20px; */
+    background: blue;
+    /* height: 15%;
+    width: 15%; */
+    margin: 0px 0px;
+    border-radius: 0px;
+    cursor: pointer;
+    border: 2px solid lightgrey;
+
+}
+.option {
+    font-size: 40px;
+    color: white;
+}
+#opt-1{
+    color: red;
+}
+.wrapper .option .opt-1 span{
+    color:red;
+    /* font-size: 70px; */
+}
 .grid-container {
     display:grid;
     justify-content: center;
@@ -94,7 +141,7 @@ body {
 .back {
     backface-visibility: hidden;
     position: absolute;
-    border-radius: 10px;
+    border-radius: 0px;
     top:0;
     left:0;
     height: 100%;
@@ -115,6 +162,10 @@ body {
     backface-visibility: hidden;
 }
 
+.score {
+    font-size: 30px;
+    color: white;
+}
 /* .game-modal {
     position: fixed;
     left: 0; 

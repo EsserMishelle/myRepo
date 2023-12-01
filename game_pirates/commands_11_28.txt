@@ -1,0 +1,272 @@
+
+fille@DESKTOP-4JS80HJ MINGW64 ~
+$ cd d:\
+> ls
+bash: cd: d:ls: No such file or directory
+
+fille@DESKTOP-4JS80HJ MINGW64 ~
+$ ls
+'3D Objects'/
+ AppData/
+'Application Data'@
+ Contacts/
+ Cookies@
+'Creative Cloud Files'/
+ Desktop/
+ Documents/
+ Downloads/
+ Favorites/
+ Links/
+'Local Settings'@
+ Music/
+'My Documents'@
+ NTUSER.DAT
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms
+ NetHood@
+ OneDrive/
+ Pictures/
+ Postman/
+ PrintHood@
+ Programs/
+ Python/
+ Recent@
+'Saved Games'/
+ Searches/
+ SendTo@
+'Start Menu'@
+ Templates@
+ Videos/
+'irtual Machines'/
+ node_modules/
+ ntuser.dat.LOG1
+ ntuser.dat.LOG2
+ ntuser.ini
+ package-lock.json
+ package.json
+ source/
+
+fille@DESKTOP-4JS80HJ MINGW64 ~
+$ ls
+'3D Objects'/
+ AppData/
+'Application Data'@
+ Contacts/
+ Cookies@
+'Creative Cloud Files'/
+ Desktop/
+ Documents/
+ Downloads/
+ Favorites/
+ Links/
+'Local Settings'@
+ Music/
+'My Documents'@
+ NTUSER.DAT
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms
+ NetHood@
+ OneDrive/
+ Pictures/
+ Postman/
+ PrintHood@
+ Programs/
+ Python/
+ Recent@
+'Saved Games'/
+ Searches/
+ SendTo@
+'Start Menu'@
+ Templates@
+ Videos/
+'irtual Machines'/
+ node_modules/
+ ntuser.dat.LOG1
+ ntuser.dat.LOG2
+ ntuser.ini
+ package-lock.json
+ package.json
+ source/
+
+fille@DESKTOP-4JS80HJ MINGW64 ~
+$ ls
+'3D Objects'/
+ AppData/
+'Application Data'@
+ Contacts/
+ Cookies@
+'Creative Cloud Files'/
+ Desktop/
+ Documents/
+ Downloads/
+ Favorites/
+ Links/
+'Local Settings'@
+ Music/
+'My Documents'@
+ NTUSER.DAT
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms
+ NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms
+ NetHood@
+ OneDrive/
+ Pictures/
+ Postman/
+ PrintHood@
+ Programs/
+ Python/
+ Recent@
+'Saved Games'/
+ Searches/
+ SendTo@
+'Start Menu'@
+ Templates@
+ Videos/
+'irtual Machines'/
+ node_modules/
+ ntuser.dat.LOG1
+ ntuser.dat.LOG2
+ ntuser.ini
+ package-lock.json
+ package.json
+ source/
+
+fille@DESKTOP-4JS80HJ MINGW64 ~
+$ cd Desktop
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop
+$ ls
+'1z0-071 Exam – Free Actual Q&As, Page 14 ExamTopics.URL'
+ 20170528_122825.jpg
+ 2023-10-NCR-WISE/
+ 2_JOHN.DP
+'CS admin'/
+'Dec 2022'/
+ Discord.lnk*
+ Garmin/
+'M - Chrome.lnk'*
+ PerScholas.lnk*
+ Postman.lnk*
+ ReactPorcello/
+'Roblox Player.lnk'*
+'Roblox Studio.lnk'*
+'SQL Shell (psql).lnk'*
+ Slack.lnk*
+'Swim pool'/
+'Visual Studio Code (2).lnk'*
+'Visual Studio Code.lnk'*
+ Zoom.lnk*
+ desktop.ini
+ manipulate-the-dom/
+'music teacher suggestions.jpg'
+ southwest/
+'visual basic code.png'
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop
+$ cd perScholas.lnk
+bash: cd: perScholas.lnk: Not a directory
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop
+$ cd PerScholas.lnk
+bash: cd: PerScholas.lnk: Not a directory
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop
+$ cd manipulate-the-dom/
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$ git add -A
+warning: in the working copy of 'game_pirates/assets/shark_waves.gif', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/analytics.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/desktopCommon.f2481554.bundle.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/desktopVendor.3f68a65f.bundle.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/global-cookies.7e0e4e88d0225db89a578b31aa627050b4ce1e0d.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/gtm.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/j.php', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/nc-9371cda4e80660dad3db4e0ba0db5c43.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/quant.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/rules-p-jvu6JC2_EEYyU.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/runtime.c21c4c28.bundle.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/saved_resource.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/sdk(1).js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/sdk.7e0e4e88d0225db89a578b31aa627050b4ce1e0d.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/sdk.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/search-icon.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/search.f02b61fc.bundle.js.download', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'game_pirates/assets/shark_waves_files/va_gq-9371cda4e80660dad3db4e0ba0db5c43.js.download', LF will be replaced by CRLF the next time Git touches it
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$ git commit -m "pirate game background img css"
+[main 4f17c6a] pirate game background img css
+ 54 files changed, 6794 insertions(+)
+ create mode 100644 game_pirates/assets/Candyinc-9Gl2.otf
+ create mode 100644 game_pirates/assets/Rustic-dyJl.ttf
+ create mode 100644 game_pirates/assets/TexasCrustPersonalUseReg-w1nrw.ttf
+ create mode 100644 game_pirates/assets/blank.jpg
+ create mode 100644 game_pirates/assets/blue-tresure.jpg
+ create mode 100644 game_pirates/assets/blue-tresure.png
+ create mode 100644 game_pirates/assets/bomb1.jfif
+ create mode 100644 game_pirates/assets/green-treasure.jpg
+ create mode 100644 game_pirates/assets/green-treasure.png
+ create mode 100644 game_pirates/assets/oceanMoving.gif
+ create mode 100644 game_pirates/assets/oceanMoving2.gif
+ create mode 100644 game_pirates/assets/oceanMoving3.gif
+ create mode 100644 game_pirates/assets/oceanMoving4.gif
+ create mode 100644 game_pirates/assets/oceanMoving5.gif
+ create mode 100644 game_pirates/assets/oceanMoving6.gif
+ create mode 100644 game_pirates/assets/red-treasure.jpg
+ create mode 100644 game_pirates/assets/red-treasure.png
+ create mode 100644 game_pirates/assets/shark_waves.gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200(1).gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200(2).gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200.gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200w(1).gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200w(2).gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200w(3).gif
+ create mode 100644 game_pirates/assets/shark_waves_files/200w.gif
+ create mode 100644 game_pirates/assets/shark_waves_files/analytics.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/desktopCommon.f2481554.bundle.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/desktopVendor.3f68a65f.bundle.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/global-cookies.7e0e4e88d0225db89a578b31aa627050b4ce1e0d.html
+ create mode 100644 game_pirates/assets/shark_waves_files/gtm.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/j.php
+ create mode 100644 game_pirates/assets/shark_waves_files/js
+ create mode 100644 game_pirates/assets/shark_waves_files/loader.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/nc-9371cda4e80660dad3db4e0ba0db5c43.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/quant.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/rules-p-jvu6JC2_EEYyU.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/runtime.c21c4c28.bundle.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/saved_resource.html
+ create mode 100644 game_pirates/assets/shark_waves_files/sdk(1).js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/sdk.7e0e4e88d0225db89a578b31aa627050b4ce1e0d.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/sdk.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/search-icon.svg
+ create mode 100644 game_pirates/assets/shark_waves_files/search.f02b61fc.bundle.js.download
+ create mode 100644 game_pirates/assets/shark_waves_files/va_gq-9371cda4e80660dad3db4e0ba0db5c43.js.download
+ create mode 100644 game_pirates/assets/wooden1.jfif
+ create mode 100644 game_pirates/assets/wooden1small.jpg
+ create mode 100644 game_pirates/assets/yellow-treasure.jpg
+ create mode 100644 game_pirates/assets/yellow-treasure.png
+ create mode 100644 game_pirates/index.html
+ create mode 100644 game_pirates/index.js
+ create mode 100644 game_pirates/style.css
+ create mode 100644 miniProject/alienShinningLight.jpg
+ create mode 100644 miniProject/alienShinningLight.png
+ create mode 100644 miniProject/alienbrightYellow.png
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$ git push origin main
+Enumerating objects: 61, done.
+Counting objects: 100% (61/61), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (59/59), done.
+Writing objects: 100% (59/59), 49.50 MiB | 4.94 MiB/s, done.
+Total 59 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/EsserMishelle/myRepo
+   eafe38e..4f17c6a  main -> main
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$

@@ -13,10 +13,28 @@
     <p class="intro">grub some treasure must ye not. </p>
     <p class="intro">Sailin' cross the Seven Seas, </p>
     <p class="intro">give ye me all looties when ye see!</p>
+    <div class="board" id="board"></div>
     <div class="grid-container"></div>
-    <p>Score: <span class="score"></span></p>
+    <p class="score">Score: <span class="score"></span></p>
     <div class = "actions">
-        <button onclick ="restart()">Restart</button>
+        <button id="btn-restart" onclick ="restart()">Restart</button>
+        <button id="btn-play" onClick ="play()">Play</button>
+        <div class = "wrapper">
+            <label for ="opt-1" class="option opt-1">
+                <img src="/assets/red-pirate.jpg" id="red-pirate" alt="red-pirate
+                " class="piece-image">
+                <input type ="radio" name="player-type" id ="opt-1" value="opt-1">
+                <!-- <div class="dot"></div> -->
+                <span>Red Beard</span>
+            </label>
+
+            <label for ="opt-2" class="option opt-2">
+                <img src="/assets/green-pirate.jpg" id="green-pirate" alt="green-pirate" class="piece-image">
+                <input type ="radio" name="player-type" id ="opt-2" value="opt-2">
+            <!-- <div class="dot"></div> -->
+                <span>Green John Silver</span>
+            </label>
+        </div>
     </div>
     <script src ="index.js" defer></script>
 

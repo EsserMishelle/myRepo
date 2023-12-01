@@ -1,0 +1,38 @@
+[
+    {
+        "image": "../assets/bomb1.png",
+        "name": "bomb1"
+    },
+    {
+        "image": "../assets/bomb2.png",
+        "name": "bomb2"
+    },
+    {
+        "image": "../assets/blue-treasure.png",
+        "name": "blue-treasure"
+    },
+    {
+        "image": "../assets/red-treasure.png",
+        "name": "red-treasure"
+    },
+    {
+        "image": "../assets/yellow-treasure.png",
+        "name": "yellow-treasure"
+    },
+    {
+        "image": "../assets/blank1.jpg",
+        "name": "blank1"
+    },
+    {
+        "image": "../assets/blank2.jpg",
+        "name": "blank2"
+    },
+    {
+        "image": "../assets/blank3.jpg",
+        "name": "blank3"
+    },
+    {
+        "image": "../assets/blank4.jpg",
+        "name": "blank4"
+    }
+]
