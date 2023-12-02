@@ -62,39 +62,8 @@ h1 {
     float:left;
     width: 5%;
 }
-.small-container {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-}
-.small-container img{
-    width: 100%;
-    height: auto;
-}
-.small-container .btnDiceRoll {
-    position:absolute;
-    width: 500;;
-    margin-left: 70;
-    margin-top: 30;
-    /* top: 50%;
-    left: 50%; */
-    
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #555;
-    color: white;
-    font-size: 56px;
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-}
-.small-container .btnDiceRoll:hover {
-    background-color: black;
-  }
-#dice-roll-id{
-    width: 100%;
+#dice-photo-id{
+    width: 80px;
     margin-left: 200px;
     margin-top: 100px;
     position: relative;
@@ -161,14 +130,15 @@ h1 {
     grid-template-columns: repeat(6, 140px);
     grid-template-rows: repeat(2, calc(140px /2 *3)) ;
 }
-.move-spaces{
+.move-space{
     background-color: #000000;
     color: #FFF;
-    height: 200px;
+    border-radius: 1rem;
+    height: 60px;
     width: 100px;
     
     line-height: 1rem;
-    margin-left: 100px;
+    margin: auto;
     font-size: 1rem;
 }
 .status {

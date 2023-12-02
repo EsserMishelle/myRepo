@@ -4,9 +4,35 @@ let cards = [];
 // let lockBoard = false;
 let score;
 let currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
-
+let gameOver = false;
+const pirateStatusEl = document.querySelector("pirate-status")
 
 document.querySelector(".score").textContent = score;
+
+class Pirate{
+  constructor(name, color, treasures, bombs, scores, value){
+      
+      this.name = name;
+      this.color = color;
+      this.treasures =0;
+      this.bombs=0;
+      this.scores=100;
+      this.value= value;
+      // this.flipCard= this.playCard.bind(this)
+  }
+  playCard(cardEl) {
+      console.log('abc')
+      console.log(`${this.name} played card ${cardEl.dataset.name}`)
+      alert(`${this.name} played card ${cardEl.dataset.name}`)
+  }
+}
+
+const pirates =[
+new Pirate('Red Beard', 'red', 0,0,100, 'opt-1'),
+new Pirate('Green John Silver', 'green', 0,0,100, 'opt-2')
+];
+
+
 //credit: memory game javascript academy
 fetch("./data/cards.json")
   .then((res) => res.json())
@@ -31,12 +57,9 @@ function shuffleCards() {
 }
 
 function generateCards() {
-
-// resetBoard();
-
 for (let i=0; i< 6; i++) {
   for (let j=0; j <3; j++){
-    console.log(`The row is now ${i}, col is ${j}`)
+    // console.log(`The row is now ${i}, col is ${j}`) ////---testing
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.setAttribute("data-name", cards[i*3+j].name);
@@ -48,145 +71,182 @@ for (let i=0; i< 6; i++) {
     `;
     gridContainer.appendChild(cardElement);
     cardElement.addEventListener("click", flipCard);
-    cardElement.addEventListener('drag', handleCardElDrag);
+    // cardElement.addEventListener('dragstart', handleCardElDragStart);
+    // cardElement.addEventListener('dragover', handleCardElDragOver);
+    // cardElement.addEventListener('drop', handleCardElDrop);
     cardElement.dataset.row = i;
     cardElement.dataset.col = j;
      }
   }
 }
 
-function handleCardElDrag(event) {
-    const draggedCard = event.target;
-    const row = draggedCard.dataset.row;
-    const col = draggedCard.dataset.cel;
-//if no player is selected from the toggle, remind the player to click on the toggle
-  if (!currentPlayer) {
-    alert('Please select a pirate before dragg your piece to the desired spot');
-    return;
+const redPirate = document.getElementById('red-pirate');
+const greenPirate = document.getElementById('green-pirate');
+
+redPirate.addEventListener('dragstart', handlePieceDragStart);
+redPirate.addEventListener('dragover', handlePieceDragOver);
+redPirate.addEventListener('drop', handlePieceDrop);
+
+document.getElementById('red-pirate').addEventListener('dragstart', handlePieceDragStart);
+document.getElementById('red-pirate').addEventListener('dragstart', handlePieceDragStart);
+
+function handlePieceDragStart(event) {
+  const draggedPiece = event.target;
+  
+  draggedPiece.style.position ='absolute';
+  draggedPiece.style.zIndex = 1000 //ensure it is on top
+  draggedPiece.style.top = `${event.clientY - draggedPiece.offsetHeight/2}px`
+  draggedPiece.style.lef = `${event.clientX - draggedPiece.offsetWidth/2}px`
+  
+  //append the dragged piece to the container or the doc
+  gridContainer.appendChild(draggedPiece);
+
+  //prevent the default drag behavior
+  event.dataTransfer.setDragImage(new Image(), 0,0);
+  event.dataTransfer.effectAllowed = 'move';
+
+  event.dataTransfer.setData("text/plain", 'piece');
+}
+function handlePieceDragOver(event) {
+  event.preventDefault();
+  const targetCard = event.target.closest('.card');
+
+  //ensure it is a valid card
+  if (targetCard && !targetCard.classList.contains('occupied'))
+  {
+      targetCard.classList.add('drop-target');
   }
-
-//check to see if the cell is empty
-  if (draggedCard.classList.contains('occupied')) {
-        //place the player's piece
-        const pieceColor = players[currentPlayer].color;
-        draggedCard.classList.add('occupied', pieceColor);
-  }    
 }
-//   for (let card of cards) {
-//     const cardElement = document.createElement("div");
-//     cardElement.classList.add("card");
-//     cardElement.setAttribute("data-name", card.name);
-//     cardElement.innerHTML = 
-//     <div class ="front">
-//       <img class = "front-image" src=${card.image} />
-//     </div>
-//     <div class ="back"></div>
-//     `;
-//     gridContainer.appendChild(cardElement);
-//     cardElement.addEventListener("click", flipCard);
-//   }
+
+function handlePieceDrop(event) {
+  event.preventDefault();
+  const draggedCardId=event.dataTransfer.setData.getDate("text/plain");
+  const draggedCard = document.getElementById(draggedCardId);
+  const targetCard = event.target.closest('.card');
+
+  //check if the drop target is a valid card
+if (targetCard && !targetCard.classList.contains('occupied')) {
+  //set the player's piece on the target card
+  const pieceColor= currentPlayer.color;
+  targetCard.classList.add('occupied', pieceColor);
+  
+  //reset currentPlayer to allow next move
+  currentPlayer='null';
+}
+  targetCard.classList.remove('drop-target')
+}
+
+// const modalContainer = document.getElementById('modal-container');
+// const closeBtn = document.getElementById('modal-close');
+
+// const toggleClasses = (event) => {
+//   modalContainer.classList.toggle('hidden')
+//   modalContainer.classList.toggle('shown')
 // }
-// cardEl = document.querySelector("div");
-class Pirate{
-    constructor(name, color, treasures, bombs, scores, value){
-        
-        this.name = name;
-        this.color = color;
-        this.treasures =0;
-        this.bombs=0;
-        this.scores=100;
-        this.value= value;
-        // this.flipCard= this.playCard.bind(this)
-    }
-    playCard(cardEl) {
-        console.log('abc')
-        console.log(`${this.name} played card ${cardEl.dataset.name}`)
-        alert(`${this.name} played card ${cardEl.dataset.name}`)
-    }
+// closeBtn.addEventListener('click', toggleClasses)
+
+function rollDice() {
+  const dice1 = Math.floor(Math.random()*4);
+  const dice2 = Math.floor(Math.random()*6);
+
+  if (dice1 ===1) {
+    console.log (`Move 'North' ${dice2} spaces`)
+    return (`Move 'North' ${dice2} spaces`)
+  } else if (dice1 ===2) {
+    console.log (`Move 'East' ${dice2} spaces`)
+    return (`Move 'East' ${dice2} spaces`)
+  } else if (dice1 ===3) {
+    console.log (`Move 'South' ${dice2} spaces`)
+    return (`Move 'South' ${dice2} spaces`)
+  } else if (dice1 ===4) {
+    console.log (`Move 'West' ${dice2} spaces`)
+    return (`Move 'West' ${dice2} spaces`)
+  }
 }
 
-// cardEl.addEventListener('click', function(event) {
-//     console.log (`Ye opened : ${event.target.dataset}`);
-//     alert(`Ye opened : ${event.target.dataset}`);
-// }) 
-// flipCard(cardEl){
-//         if (cardEl.)
 
-//         //unflipped the card (turn it over to deck face)
-//         setTimeout(()=> { 
-//             cardEl.classList.remove('flipped');
-//         }, 1000);
-//     };
-// const pirates =[
-//   {name: 'Red Beard', color: 'red', value: 'opt-1'},
-//   {name: 'Green John Silver', color: 'green', value: 'opt-2'}
-// ];
+const diceRollEl=document.getElementById("btnDiceRoll");
 
+const diceResult= document.getElementById("move-spaces-display")
+diceRollEl.addEventListener('click', function(event) {
+  console.log(rollDice())
+  diceResult.style.innerHTML= 'ABC'; 
+  // diceResult.style.textContent= console.log(rollDice());
 
-const pirates =[
- new Pirate('Red Beard', 'red', 0,0,100, 'opt-1'),
- new Pirate('Green John Silver', 'green', 0,0,100, 'opt-2')
-];
+})
 
-// currentPlayer =document.querySelector('input[name="player-type"]:checked');
-//   if (!currentPlayer) {
-//     alert('Please select a pirate before flipping a card');
-//     return;
-//   }
-//   const selectedPirate = pirates.find((pirate)=>pirate.value === currentPlayer.value);
 
 function flipCard() {
-//   if (lockBoard) return;
-//   if (this === firstCard) return;
-
   currentPlayer =document.querySelector('input[name="player-type"]:checked');
   if (!currentPlayer) {
+    // modalContainer.style.visibility= true;
+    // modalContainer.style.display= "flex";
+    // modalContainer.textContent=`Please select a pirate before flipping a card`
     alert('Please select a pirate before flipping a card');
     return;
   }
   const selectedPirate= pirates.find((pirate)=>pirate.value === currentPlayer.value);
-//   selectedPirate.playCard(this);
   this.classList.add("flipped");
-  score = currentPlayer.scores;
-  console.log(currentPlayer)
-  if ((this.dataset.name ==='bomb1') || (this.dataset.name ==='bomb2') ) {
-      selectedPirate.scores = selectedPirate.scores-100;
-    
-    alert(`${selectedPirate.name} just lost 100 scores. It is ${selectedPirate.scores}`);   
-    } else if ((this.dataset.name=== 'blue-treasure') || (this.dataset.name=== 'red-treasure') || (this.dataset.name=== 'yellow-treasure')) {
-        selectedPirate.treasures+=1;
-    alert(`Aha, found a treasure! ${selectedPirate.name} now has ${selectedPirate.treasures} treasure(s)! `);   
-    }
   setTimeout(() => {
         this.classList.remove('flipped');
-        
-        // resetBoard();
-      }, 1000);
-//   secondCard = this;
-//   score++;
-  document.querySelector(".score").textContent = score;
-//   lockBoard = true;
-//   checkForMatch();
+      }, 2000);
+  checkCard(selectedPirate, this.dataset.name)
+    }
 
+function gameWon(selectedPirate) {
+      document.getElementById("pirate-talk-id").textContent=`Looks like fortune favor me. Found the coffer of long lost gold!!! ~~~ I won!`;
+      document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+      gameOver = true;
+      setTimeout(() => {
+      alert(`Game over- ${selectedPirate.name} won. Click 'Restart' to play again`);
+      }, 3000);
 }
+    
+function gameLost(selectedPirate) {
+      document.querySelector("#pirate-talk-id").textContent=`Shiver me timbers! Looks like me been shot.  Smee, SAVE ME!!!~~~ game over`
+      document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+      gameOver= true;
+      setTimeout(()=> {
+        alert(`Game over- ${selectedPirate.name} lost. Click 'Restart' to play again`);
+      }, 3000);
+}    
+    
+function checkCard(selectedPirate, cardName) { 
+  // if (gameLost(selectedPirate) || gameWon(selectedPirate)) return;
+  if ((cardName ==='bomb1') || (cardName ==='bomb2') ) {
+    selectedPirate.scores -= 50;
+      if ( selectedPirate.scores <= 0) { 
+        gameLost(selectedPirate);
+        return;
+      } else if ( selectedPirate.scores >= 0){
+      
+      document.querySelector("#pirate-talk-id").textContent=`Blimey, who hid a bomb here?`   
+      document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+      } 
+      
+  } else if ((cardName=== 'blue-treasure') || (cardName=== 'red-treasure') || (cardName=== 'yellow-treasure')) {
+      selectedPirate.treasures+=1;
+      if (selectedPirate.treasures >=3) {
+        
+        gameWon(selectedPirate);
+        return;
+      } else if (selectedPirate.treasures <3) {
+       
+      document.querySelector("#pirate-talk-id").textContent=`Ahoy, what we got here! Heave ho to this treasure chest!` 
+      document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+    
+      }
+    } 
+    document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+    
+  }
 
-// function checkForMatch() {
-//   let isMatch = firstCard.dataset.name === secondCard.dataset.name;
-//   isMatch ? disabledCards() : unflipCards();
-
-//   //   if (isMatch) {
-//   //     disableCards();
-
-//   // } else {  
-//   //     unflipCards();
-//   //   }
-// }
-
-// function disabledCards() {
-//   firstCard.removeEventListener('click', flipCard);
-//   secondCard.removeEventListener('click', flipCard);
-//   resetBoard();
-// }
+  document.querySelector(".score").textContent = score;
+  function isOver() {
+    if (gameOver) {
+      alert(`Press 'Restart' to restart the game`)
+    }
+  }
 
 function unflipCards() {
   setTimeout(() => {
@@ -206,12 +266,15 @@ function resetBoard() {
 }
 
 function restart() {
-  resetBoard();
+  // resetBoard();
   shuffleCards();
   score = 0;
+  let currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
   document.querySelector('.score').textContent = score;
   gridContainer.innerHTML = '';
   generateCards();
+  document.querySelector("#pirate-talk-id").textContent=``;
+  document.querySelector("#pirate-status-id").textContent=``;
   // currentPlayer =0;
 }
   // lockBoard = false;
