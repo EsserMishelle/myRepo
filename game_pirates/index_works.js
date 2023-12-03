@@ -57,9 +57,6 @@ function shuffleCards() {
 }
 
 function generateCards() {
-
-// resetBoard();
-
 for (let i=0; i< 6; i++) {
   for (let j=0; j <3; j++){
     // console.log(`The row is now ${i}, col is ${j}`) ////---testing
@@ -84,20 +81,18 @@ for (let i=0; i< 6; i++) {
 }
 
 const redPirate = document.getElementById('red-pirate');
+const greenPirate = document.getElementById('green-pirate');
 
 redPirate.addEventListener('dragstart', handlePieceDragStart);
 redPirate.addEventListener('dragover', handlePieceDragOver);
 redPirate.addEventListener('drop', handlePieceDrop);
 
-
 document.getElementById('red-pirate').addEventListener('dragstart', handlePieceDragStart);
-
 document.getElementById('red-pirate').addEventListener('dragstart', handlePieceDragStart);
 
 function handlePieceDragStart(event) {
   const draggedPiece = event.target;
-  //set stype
-
+  
   draggedPiece.style.position ='absolute';
   draggedPiece.style.zIndex = 1000 //ensure it is on top
   draggedPiece.style.top = `${event.clientY - draggedPiece.offsetHeight/2}px`
@@ -141,14 +136,37 @@ if (targetCard && !targetCard.classList.contains('occupied')) {
   targetCard.classList.remove('drop-target')
 }
 
-// const modalContainer = document.getElementById('modal-container');
-// const closeBtn = document.getElementById('modal-close');
+function rollDice() {
+  const dice1 = Math.floor(Math.random()*4) +1;
+  const dice2 = Math.floor(Math.random()*6) +1;
 
-// const toggleClasses = (event) => {
-//   modalContainer.classList.toggle('hidden')
-//   modalContainer.classList.toggle('shown')
-// }
-// closeBtn.addEventListener('click', toggleClasses)
+  if (dice1 ===1) {
+    console.log (`Move 'North' ${dice2} spaces`)
+    return (`Move 'North' ${dice2} spaces`)
+  } else if (dice1 ===2) {
+    console.log (`Move 'East' ${dice2} spaces`)
+    return (`Move 'East' ${dice2} spaces`)
+  } else if (dice1 ===3) {
+    console.log (`Move 'South' ${dice2} spaces`)
+    return (`Move 'South' ${dice2} spaces`)
+  } else if (dice1 ===4) {
+    console.log (`Move 'West' ${dice2} spaces`)
+    return (`Move 'West' ${dice2} spaces`)
+  }
+}
+
+
+const diceRollEl=document.getElementById("btnDiceRoll");
+
+const diceResult= document.querySelector(".move-spaces")
+diceRollEl.addEventListener('click', function(event) {
+  // console.log('Hello')
+  const result = rollDice();
+  
+  diceResult.textContent= result;
+
+})
+
 
 function flipCard() {
   currentPlayer =document.querySelector('input[name="player-type"]:checked');
@@ -215,57 +233,12 @@ function checkCard(selectedPirate, cardName) {
     
   }
 
-  
-
-  // function checkCard(selectedPirate, cardName) {
-//   if ((this.dataset.name ==='bomb1') || (this.dataset.name ==='bomb2') ) {
-//     selectedPirate.scores = selectedPirate.scores-50;
-//       if ( selectedPirate.scores <= 0) { 
-        
-//         document.querySelector("#pirate-talk-id").textContent=`Shiver me timbers! Looks like me been shot.  Smee, SAVE ME!!!~~~ game over`
-//         document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-        
-//         gameOver= true;
-//         alert(`Press 'Restart' to restart the game`)
-//         return;
-//       } else if ( selectedPirate.scores >= 0){
-      
-//       document.querySelector("#pirate-talk-id").textContent=`Blimey, who hid a bomb here?`   
-//       document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-//       } 
-      
-//   } else if ((this.dataset.name=== 'blue-treasure') || (this.dataset.name=== 'red-treasure') || (this.dataset.name=== 'yellow-treasure')) {
-//       selectedPirate.treasures+=1;
-//       if (selectedPirate.treasures >=3) {
-        
-//         document.getElementById("pirate-talk-id").textContent=`Looks like fortune favor me. Found the coffer of long lost gold!!! ~~~ I won!`;
-//         document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-//         // alert(`Press 'Restart' to restart the game`)
-//         gameOver = true;
-        
-//         return;
-//       } else if (selectedPirate.treasures <3) {
-//       // alert(`Ahoy, what we got here! Heave ho to this treasure chest!`);  
-//       document.querySelector("#pirate-talk-id").textContent=`Ahoy, what we got here! Heave ho to this treasure chest!` 
-//       document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-//     // pirateStatusEl.textContent=`${selectedPirate.name}: ${selectedPirate.treasures}`
-//       }
-//     } 
-//     document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-    
-//   }
-
- 
-
   document.querySelector(".score").textContent = score;
-
   function isOver() {
     if (gameOver) {
       alert(`Press 'Restart' to restart the game`)
     }
   }
-
-
 
 function unflipCards() {
   setTimeout(() => {

@@ -2,7 +2,7 @@ const gridContainer = document.querySelector(".grid-container");
 let cards = [];
 // let firstCard, secondCard;
 // let lockBoard = false;
-let score;
+// let score;
 let currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
 let gameOver = false;
 const pirateStatusEl = document.querySelector("pirate-status")
@@ -136,18 +136,10 @@ if (targetCard && !targetCard.classList.contains('occupied')) {
   targetCard.classList.remove('drop-target')
 }
 
-// const modalContainer = document.getElementById('modal-container');
-// const closeBtn = document.getElementById('modal-close');
-
-// const toggleClasses = (event) => {
-//   modalContainer.classList.toggle('hidden')
-//   modalContainer.classList.toggle('shown')
-// }
-// closeBtn.addEventListener('click', toggleClasses)
-
+//dice roll function when the user click on the dice img
 function rollDice() {
-  const dice1 = Math.floor(Math.random()*4);
-  const dice2 = Math.floor(Math.random()*6);
+  const dice1 = Math.floor(Math.random()*4) +1;
+  const dice2 = Math.floor(Math.random()*6) +1;
 
   if (dice1 ===1) {
     console.log (`Move 'North' ${dice2} spaces`)
@@ -164,18 +156,23 @@ function rollDice() {
   }
 }
 
-
 const diceRollEl=document.getElementById("btnDiceRoll");
+const diceResult= document.querySelector(".move-spaces") //displaying # of spaces
 
-const diceResult= document.getElementById("move-spaces-display")
 diceRollEl.addEventListener('click', function(event) {
-  console.log(rollDice())
-  diceResult.style.innerHTML= 'ABC'; 
-  // diceResult.style.textContent= console.log(rollDice());
-
+  // console.log('Hello')
+  const result = rollDice();
+diceResult.textContent= result;
 })
 
+//function to unflipping card
+function unflipCards(dataset) {
+  setTimeout(() => {
+    dataset.classList.remove('flipped');
+  }, 1000);
+}
 
+//function to flip the top card over
 function flipCard() {
   currentPlayer =document.querySelector('input[name="player-type"]:checked');
   if (!currentPlayer) {
@@ -187,21 +184,23 @@ function flipCard() {
   }
   const selectedPirate= pirates.find((pirate)=>pirate.value === currentPlayer.value);
   this.classList.add("flipped");
-  setTimeout(() => {
-        this.classList.remove('flipped');
-      }, 2000);
+
+  unflipCards(this);//unflipping the card using set time out. 
+  
   checkCard(selectedPirate, this.dataset.name)
     }
 
+//check to see if a user (pirate) wins
 function gameWon(selectedPirate) {
-      document.getElementById("pirate-talk-id").textContent=`Looks like fortune favor me. Found the coffer of long lost gold!!! ~~~ I won!`;
+      document.getElementById("pirate-talk-id").textContent=`Looks like fortune favors me. Found the cove of long lost gold!!! ~~~ I won!`;
       document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
       gameOver = true;
       setTimeout(() => {
       alert(`Game over- ${selectedPirate.name} won. Click 'Restart' to play again`);
       }, 3000);
 }
-    
+
+//check to see if a user (pirate) loses
 function gameLost(selectedPirate) {
       document.querySelector("#pirate-talk-id").textContent=`Shiver me timbers! Looks like me been shot.  Smee, SAVE ME!!!~~~ game over`
       document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
@@ -210,7 +209,8 @@ function gameLost(selectedPirate) {
         alert(`Game over- ${selectedPirate.name} lost. Click 'Restart' to play again`);
       }, 3000);
 }    
-    
+
+////displays pirate reaction with a treasure or bomb card 
 function checkCard(selectedPirate, cardName) { 
   // if (gameLost(selectedPirate) || gameWon(selectedPirate)) return;
   if ((cardName ==='bomb1') || (cardName ==='bomb2') ) {
@@ -219,11 +219,10 @@ function checkCard(selectedPirate, cardName) {
         gameLost(selectedPirate);
         return;
       } else if ( selectedPirate.scores >= 0){
-      
       document.querySelector("#pirate-talk-id").textContent=`Blimey, who hid a bomb here?`   
       document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
       } 
-      
+    //if a user get any tresure card  
   } else if ((cardName=== 'blue-treasure') || (cardName=== 'red-treasure') || (cardName=== 'yellow-treasure')) {
       selectedPirate.treasures+=1;
       if (selectedPirate.treasures >=3) {
@@ -234,27 +233,20 @@ function checkCard(selectedPirate, cardName) {
        
       document.querySelector("#pirate-talk-id").textContent=`Ahoy, what we got here! Heave ho to this treasure chest!` 
       document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-    
       }
-    } 
+    } //display the status after a treasure/bomb card
     document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
     
   }
 
-  document.querySelector(".score").textContent = score;
-  function isOver() {
-    if (gameOver) {
-      alert(`Press 'Restart' to restart the game`)
-    }
-  }
-
-function unflipCards() {
-  setTimeout(() => {
-    this.classList.remove('flipped');
-    
-    // resetBoard();
-  }, 1000);
-}
+  // document.querySelector(".score").textContent = score;
+  
+  //old code
+  // function isOver() {
+  //   if (gameOver) {
+  //     alert(`Press 'Restart' to restart the game`)
+  //   }
+  // }
 
 function resetBoard() {
   shuffleCards();
@@ -265,12 +257,13 @@ function resetBoard() {
   // currentPlayer =0;
 }
 
+
 function restart() {
   // resetBoard();
   shuffleCards();
-  score = 0;
+  // score = 0;
   let currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
-  document.querySelector('.score').textContent = score;
+  // document.querySelector('.score').textContent = score;
   gridContainer.innerHTML = '';
   generateCards();
   document.querySelector("#pirate-talk-id").textContent=``;
