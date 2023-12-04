@@ -1,22 +1,28 @@
+//loading the opening-modal
+function openingModal() {
+  document.querySelector(".opening-modal").style.display = "block";
+  // document.querySelector(".opening-modal").classList.style='inline';
+}
+window.onload =openingModal;
+
+//setting up the gridContainer
 const gridContainer = document.querySelector(".grid-container");
+
 let cards = [];
-// let firstCard, secondCard;
-// let lockBoard = false;
-// let score;
+
 let currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
 let gameOver = false;
 const pirateStatusEl = document.querySelector("pirate-status")
 
-document.querySelector(".score").textContent = score;
+
 
 class Pirate{
   constructor(name, color, treasures, bombs, scores, value){
-      
       this.name = name;
       this.color = color;
       this.treasures =0;
       this.bombs=0;
-      this.scores=100;
+      this.scores=150;
       this.value= value;
       // this.flipCard= this.playCard.bind(this)
   }
@@ -28,8 +34,8 @@ class Pirate{
 }
 
 const pirates =[
-new Pirate('Red Beard', 'red', 0,0,100, 'opt-1'),
-new Pirate('Green John Silver', 'green', 0,0,100, 'opt-2')
+new Pirate('Red Beard', 'red', 0,0,150, 'opt-1'),
+new Pirate('Green John Silver', 'green', 0,0,150, 'opt-2')
 ];
 
 
@@ -43,6 +49,7 @@ fetch("./data/cards.json")
     generateCards();
   });
 
+  //reshuffleCard
 function shuffleCards() {
   let currentIndex = cards.length,
     randomIndex,
@@ -58,14 +65,14 @@ function shuffleCards() {
 
 function generateCards() {
 for (let i=0; i< 6; i++) {
-  for (let j=0; j <3; j++){
+  for (let j=0; j <7; j++){
     // console.log(`The row is now ${i}, col is ${j}`) ////---testing
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
-    cardElement.setAttribute("data-name", cards[i*3+j].name);
+    cardElement.setAttribute("data-name", cards[i*7+j].name);
     cardElement.innerHTML = `
       <div class ="front">
-      <img class = "front-image" src=${cards[i*3+j].image} />
+      <img class = "front-image" src=${cards[i*7+j].image} />
       </div>
       <div class ="back"></div>
     `;
@@ -80,34 +87,89 @@ for (let i=0; i< 6; i++) {
   }
 }
 
-const redPirate = document.getElementById('red-pirate');
+const redPirate = document.getElementById('red-pirate1');
+
 const greenPirate = document.getElementById('green-pirate');
 
-redPirate.addEventListener('dragstart', handlePieceDragStart);
-redPirate.addEventListener('dragover', handlePieceDragOver);
-redPirate.addEventListener('drop', handlePieceDrop);
+redPirate.addEventListener('dragstart', handleRedPiratePieceDragStart);
+redPirate.addEventListener('dragover', handleRedPiratePieceDragOver);
+redPirate.addEventListener('drop', handleRedPiratePieceDrop);
+// document.getElementById('red-pirate').addEventListener('dragstart', handleRedPiratePieceDragStart);
+// document.getElementById('red-pirate').addEventListener('dragover', handleRedPiratePieceDragOver);
+// document.getElementById('red-pirate').addEventListener('drop', handleRedPiratePieceDrop);
 
-document.getElementById('red-pirate').addEventListener('dragstart', handlePieceDragStart);
-document.getElementById('red-pirate').addEventListener('dragstart', handlePieceDragStart);
+greenPirate.addEventListener('dragstart', handleGreenPiratePieceDragStart);
+greenPirate.addEventListener('dragover', handleGreenPiratePieceDragOver);
+greenPirate.addEventListener('drop', handleGreenPiratePieceDrop);
 
-function handlePieceDragStart(event) {
+document.getElementById('green-pirate').addEventListener('dragstart', handleGreenPiratePieceDragStart);
+document.getElementById('green-pirate').addEventListener('dragover', handleGreenPiratePieceDragStart);
+document.getElementById('green-pirate').addEventListener('drop', handleGreenPiratePieceDrop);
+
+function handleRedPiratePieceDragStart(event) {
   const draggedPiece = event.target;
+  draggedPiece.style.position ='fixed';
+  draggedPiece.style.zIndex = 1000; // Ensure it is on top
+  draggedPiece.style.top = `${event.clientY - draggedPiece.offsetHeight/2}px`;
+  draggedPiece.style.left = `${event.clientX - draggedPiece.offsetWidth/2}px`;
   
-  draggedPiece.style.position ='absolute';
+  // Append the dragged piece to the container or the doc
+  gridContainer.appendChild(draggedPiece);
+
+  // Prevent the default drag behavior
+  event.dataTransfer.setDragImage(new Image(), 0, 0);
+  event.dataTransfer.effectAllowed = 'move';
+
+  event.dataTransfer.setData("text/plain", 'piece');
+}
+
+function handleRedPiratePieceDragOver(event) {
+  event.preventDefault();
+  const targetCard = event.target.closest('.card');
+
+  // Ensure it is a valid card
+  if (targetCard && !targetCard.classList.contains('occupied')) {
+    targetCard.classList.add('drop-target');
+  }
+}
+
+function handleRedPiratePieceDrop(event) {
+  event.preventDefault();
+  const draggedCardId = event.dataTransfer.getData("text/plain");
+  const draggedCard = document.getElementById(draggedCardId);
+  const targetCard = event.target.closest('.card');
+
+  // Check if the drop target is a valid card
+  if (targetCard && !targetCard.classList.contains('occupied')) {
+    // Set the player's piece on the target card
+    const pieceColor = currentPlayer.color;
+    targetCard.classList.add('occupied', pieceColor);
+
+    // Reset currentPlayer to allow the next move
+    currentPlayer = null;
+  }
+
+  // Remove the drop-target class from all cards
+  const dropTargets = document.querySelectorAll('.card');
+  dropTargets.forEach(card => card.classList.remove('drop-target'));
+}
+
+function handleGreenPiratePieceDragStart(event) {
+  const draggedPiece = event.target;
+  draggedPiece.style.position ='fixed';
   draggedPiece.style.zIndex = 1000 //ensure it is on top
   draggedPiece.style.top = `${event.clientY - draggedPiece.offsetHeight/2}px`
-  draggedPiece.style.lef = `${event.clientX - draggedPiece.offsetWidth/2}px`
+  draggedPiece.style.left = `${event.clientX - draggedPiece.offsetWidth/2}px`
   
   //append the dragged piece to the container or the doc
   gridContainer.appendChild(draggedPiece);
-
   //prevent the default drag behavior
   event.dataTransfer.setDragImage(new Image(), 0,0);
   event.dataTransfer.effectAllowed = 'move';
 
   event.dataTransfer.setData("text/plain", 'piece');
 }
-function handlePieceDragOver(event) {
+function handleGreenPiratePieceDragOver(event) {
   event.preventDefault();
   const targetCard = event.target.closest('.card');
 
@@ -115,12 +177,13 @@ function handlePieceDragOver(event) {
   if (targetCard && !targetCard.classList.contains('occupied'))
   {
       targetCard.classList.add('drop-target');
+      
   }
 }
 
-function handlePieceDrop(event) {
+function handleGreenPiratePieceDrop(event) {
   event.preventDefault();
-  const draggedCardId=event.dataTransfer.setData.getDate("text/plain");
+  const draggedCardId=event.dataTransfer.getData("text/plain");
   const draggedCard = document.getElementById(draggedCardId);
   const targetCard = event.target.closest('.card');
 
@@ -133,7 +196,11 @@ if (targetCard && !targetCard.classList.contains('occupied')) {
   //reset currentPlayer to allow next move
   currentPlayer='null';
 }
-  targetCard.classList.remove('drop-target')
+// targetCard.classList.remove('drop-target')
+
+const dropTargets = document.querySelectorAll('.card');
+dropTargets.forEach(card =>card.classList.remove('drop-target'));
+
 }
 
 //dice roll function when the user click on the dice img
@@ -187,7 +254,9 @@ function flipCard() {
 
   unflipCards(this);//unflipping the card using set time out. 
   
-  checkCard(selectedPirate, this.dataset.name)
+  checkBombs(selectedPirate, this.dataset.name)
+  checkTreasures(selectedPirate, this.dataset.name)
+  // checkCard(selectedPirate, this.dataset.name) ////old---checks both bombs and treasures
     }
 
 //check to see if a user (pirate) wins
@@ -210,99 +279,79 @@ function gameLost(selectedPirate) {
       }, 3000);
 }    
 
-////displays pirate reaction with a treasure or bomb card 
-function checkCard(selectedPirate, cardName) { 
-  // if (gameLost(selectedPirate) || gameWon(selectedPirate)) return;
-  if ((cardName ==='bomb1') || (cardName ==='bomb2') ) {
+function checkTreasures(selectedPirate, cardName) {
+  // const rTreasures = ['red-treasure', 'red-treasure-2'];
+  // const yTreasures = ['yellow-treasure', 'yellow-treasure-2'];
+  // const bTreasures = ['blue-treasure', 'blue-treasure-2'];
+  // const gTreasures = ['green-treasure', 'green-treasure-2'];
+ 
+  const allTreasures = ['red-treasure', 'red-treasure-2', 'yellow-treasure', 'yellow-treasure-2', 'blue-treasure', 'blue-treasure-2', 'green-treasure', 'green-treasure'];
+  console.log(allTreasures);
+  // if ((allTreasures.includes(cardName))) {  using allTreasures.include
+
+  if ((cardName.includes('treasure'))) {
+    console.log(cardName);
+    selectedPirate.treasures += 1;
+    if (selectedPirate.treasures >= 3) {
+      gameWon(selectedPirate);
+      return;
+    } else if (selectedPirate.treasures < 3) {
+      document.querySelector("#pirate-talk-id").textContent = `Ahoy, what we got here! Heave ho to this treasure chest!`
+      document.querySelector("#pirate-status-id").textContent = `${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+    }
+  } //display the status after a treasure/bomb card
+  document.querySelector("#pirate-status-id").textContent = `${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+}
+
+
+////displays pirate reaction with a bomb card 
+// function checkCard(selectedPirate, cardName) {
+function checkBombs(selectedPirate, cardName) {  
+  const allBombs = ['bomb1', 'bomb2'];
+  // if (allBombs.includes(cardName)) {
+  if (cardName.includes('bomb')) {
+    console.log(cardName);
     selectedPirate.scores -= 50;
-      if ( selectedPirate.scores <= 0) { 
-        gameLost(selectedPirate);
-        return;
-      } else if ( selectedPirate.scores >= 0){
-      document.querySelector("#pirate-talk-id").textContent=`Blimey, who hid a bomb here?`   
-      document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-      } 
-    //if a user get any tresure card  
-  } else if ((cardName=== 'blue-treasure') || (cardName=== 'red-treasure') || (cardName=== 'yellow-treasure')) {
-      selectedPirate.treasures+=1;
-      if (selectedPirate.treasures >=3) {
-        
-        gameWon(selectedPirate);
-        return;
-      } else if (selectedPirate.treasures <3) {
-       
-      document.querySelector("#pirate-talk-id").textContent=`Ahoy, what we got here! Heave ho to this treasure chest!` 
-      document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-      }
-    } //display the status after a treasure/bomb card
-    document.querySelector("#pirate-status-id").textContent=`${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
-    
+    if (selectedPirate.scores <= 0) {
+      gameLost(selectedPirate);
+      return;
+    } else if (selectedPirate.scores >= 0) {
+      document.querySelector("#pirate-talk-id").textContent = `Blimey, who hid a bomb here? Caused me to lose 50 points`
+      document.querySelector("#pirate-status-id").textContent = `${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
+    }
   }
-
-  // document.querySelector(".score").textContent = score;
+}
   
-  //old code
-  // function isOver() {
-  //   if (gameOver) {
-  //     alert(`Press 'Restart' to restart the game`)
-  //   }
-  // }
-
 function resetBoard() {
   shuffleCards();
   score = 0;
   document.querySelector('.score').textContent = score;
   gridContainer.innerHTML = '';
   generateCards();
-  // currentPlayer =0;
 }
 
-
+//restart the game
 function restart() {
-  // resetBoard();
   shuffleCards();
   // score = 0;
-  let currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
-  // document.querySelector('.score').textContent = score;
+  currentPlayer = {name: '', color: '', value: '', bombs: 0, treasure: 0, scores: 100};
   gridContainer.innerHTML = '';
   generateCards();
   document.querySelector("#pirate-talk-id").textContent=``;
   document.querySelector("#pirate-status-id").textContent=``;
-  // currentPlayer =0;
 }
-  // lockBoard = false;
-  // setTimeout(() => {
-  //   firstCard.classList.remove("flipped");
-  //   secondCard.classList.remove("flipped");
-  //   resetBoard();
-  // }, 1500);
-// }
 
+//the btn on the open-modal that will start the game;
+function start() {
+  // document.querySelector('.opening-modal-container').style.display='none';
+  // document.querySelector('.opening-modal-container').style.zIndex=-1;
+  document.getElementById('id01').style.display='none';
+  restart();
+}
 
 
 const cardEl = document.querySelector("div");
-
 // pirates[0] = document.querySelector("opt-1")
 // pirates[1] =  document.querySelector("opt-2")
 
-
-
-
-// function play() {
-
-// }
-
-
-
-
-     
   
-   
-    
-     
-      
-       
-       
-
-
-       

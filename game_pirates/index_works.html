@@ -7,34 +7,45 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body> 
+
+<!-- <body onload="openingModal()"> -->
     <header>
     <h1 id="main-title">Treasure Ship</h1>
-    <p id="intro" class="intro">
-        Arrgh! Board on this ship might ye be, grub some treasure must ye not.</p> 
-    <p class="intro">
-        Sailin' cross the Seven Seas, give ye me all looties when ye see!</p>
-    </header>
-    
-    <!-- <div id ="boat2-container">
-        <img src="assets/Boat2.png" alt="Boat2">
-    </div> -->
     <!-- <p id="intro" class="intro">
         Arrgh! Board on this ship might ye be, grub some treasure must ye not.</p> 
     <p class="intro">
         Sailin' cross the Seven Seas, give ye me all looties when ye see!</p> -->
+    </header>
+    <div id="id01" class="opening-modal">
+        <div class ="opening-modal-content">
+          <div class = "opening-modal-container">
+            
+            <img src="/assets/red-pirate-big.jpg" class ="pirate-picture" alt="red-pirate-big" > 
+            <span></span>
+            <img src="/assets/green-pirate-big.jpg" class ="pirate-picture" 
+            alt="green-pirate-big" > </span>
+            <p id="intro" class="intro">Arrgh! Board on this ship might ye be, </p>
+            <p id="intro" class="intro">grub some treasure must ye not.</p> 
+            <p class="intro">Sailin' cross the Seven Seas, </p>
+            <p id="intro" class="intro">give ye me all looties when ye see!</p>
+            <br>
+            <h2>Ye feeling lucky for treasure? Click 'PLAY' to enter!</h2>
+            
+            <button id="btn-modal-start" onclick ="start()">PLAY</button>
+            <span onclick="document.getElementById('id01').style.display='none'" class="opening-modal-span">&times;</span>
+          </div>
+        </div>
+    </div>
+
     <div class="side-bar">
         <div class = "small-container">
             <button id= "btnDiceRoll" class ="dice-roll">
-                <img class ="dice-roll" alt="dice" src="/assets/2-dice.png" width=" 50%">
+                <img id="dice-roll-picture" class ="dice-roll" alt="dice" src="/assets/2-dice.png" width=" 50%">
             </button>
-        
         </div>  
-        
         <div class="move-spaces" id="move-spaces-display">
-            
         </div>
-
     </div>
     
 
