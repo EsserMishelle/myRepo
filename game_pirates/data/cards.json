@@ -80,7 +80,7 @@
       "name": "blank8"
   },
   {
-      "image": "../assets/blank9.jpg",
-      "name": "blank9"
-  }
+    "image": "../assets/parrot.png",
+    "name": "parrot"
+}
 ]

@@ -13,7 +13,7 @@ let currentPlayer = {
   color: "",
   bombs: 0,
   treasure: 0,
-  scores: 150,
+  scores: 100,
   value: ''
 };
 let gameOver = false;
@@ -256,44 +256,32 @@ function flipCard() {
   // document.querySelector("#pirate-talk-id").textContent=``;
   // document.querySelector("#pirate-status-id").textContent=``;
   this.classList.add("flipped");
-  //unflipping the card using set time out. 
-  setTimeout(() => {
-    unflipCards(this); 
-    500}); 
-  
-  checkReshuffle(this.dataset.name);
-  checkBombs(selectedPirate, this.dataset.name);
-  checkTreasures(selectedPirate, this.dataset.name);
+  unflipCards(this); //unflipping the card using set time out. 
+  checkReshuffle(selectedPirate, this.dataset.name)
+  checkBombs(selectedPirate, this.dataset.name)
+  checkTreasures(selectedPirate, this.dataset.name)
   // checkCard(selectedPirate, this.dataset.name) ////old---checks both bombs and treasures
 }
 
 //check to see if a user (pirate) wins
 function gameWon(selectedPirate) {
-  document.getElementById("pirate-talk-id").textContent = `Fortune favors me. Found the cove of lost gold!!! ~~~ I won!`;
-
+  document.getElementById("pirate-talk-id").textContent = `Looks like fortune favors me. Found the cove of long lost gold!!! ~~~ I won!`;
   document.querySelector("#pirate-status-id").textContent = `${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
   gameOver = true;
 
   const wonModal = document.querySelector(".won-modal");
   wonModal.style.display = "block";
   wonModal.style.visibility = "visible";
-  document.querySelector(".won-modal").textContent='outside modal';
-  // wonModal.textContent='Modal';
   document.querySelector(".won-modal").visibility='visible';
   document.querySelector('.won-modal-content').style.display = 'block';
-  // document.querySelector('.won-modal-content').visibility = 'visible'; 
   const wonModalContainer = document.querySelector(".won-modal-container");
   wonModalContainer.style.visibility = "visible";
   wonModalContainer.style.display = "block";
-
+  
   setTimeout(() => {
-    // console.log('lalala')
-     document.querySelector('.won-modal-span1').textContent == `span1`;
-    //  document.querySelector('.won-modal-content').textContent = 'content';
-     document.querySelector(".won-modal").textContent='settimeout modal';
+    console.log('lalala')
+     document.querySelector('.won-modal-span1').innerHTML == `123`;
 
-    //  document.querySelector(".won-modal-container").textContent='container'; //null value
-    
     //  document.querySelector('.won-modal-span1').innerHTML == `Game over- ${selectedPirate.name} won. Click 'RESTART' to play again`;
   }, 2000);
   // alert(`Game over- ${selectedPirate.name} won. Click 'Restart' to play again`);
@@ -302,8 +290,7 @@ function gameWon(selectedPirate) {
 
 //check to see if a user (pirate) loses
 function gameLost(selectedPirate) {
-  document.querySelector("#pirate-talk-id").textContent = `Shiver me timbers! Me been shot. Smee, SAVE ME!!!~~~ game over`
-
+  document.querySelector("#pirate-talk-id").textContent = `Shiver me timbers! Looks like me been shot.  Smee, SAVE ME!!!~~~ game over`
   document.querySelector("#pirate-status-id").textContent = `${selectedPirate.name}: ${selectedPirate.treasures} treasures; ${selectedPirate.scores} points`
   gameOver = true;
 
@@ -315,7 +302,7 @@ function gameLost(selectedPirate) {
   const lostModalContainer = document.querySelector(".lost-modal-container");
   lostModalContainer.style.visibility = "visible";
   lostModalContainer.style.display = "block";
-
+  
   setTimeout(() => {
     document.querySelector('.lost-modal-span1').textContent = `Game over- ${selectedPirate.name} won. Click 'RESTART' to play again`;
     //  alert(`Game over- ${selectedPirate.name} won. Click 'Restart' to play again`);
@@ -323,18 +310,14 @@ function gameLost(selectedPirate) {
 }
 
 function checkReshuffle(cardName) {
-  if (cardName==='parrot') {
-    setTimeout(() => {
-      alert('MUTINY. Re-hiding treasures and bombs!')
-      shuffleCards();
-      gridContainer.innerHTML = '';
-      generateCards();
-    }, 1500);
+  if (cardName==='mean-pirate') {
+    alert('reshuffling cards')
+    // console.log(`reshuffling cards`)
+    shuffleCards();
   }
 }
 
 function checkTreasures(selectedPirate, cardName) {
-  //old codes--- will come in handy if we want to only find specific treasures
   // const rTreasures = ['red-treasure', 'red-treasure-2'];
   // const yTreasures = ['yellow-treasure', 'yellow-treasure-2'];
   // const bTreasures = ['blue-treasure', 'blue-treasure-2'];
@@ -376,27 +359,27 @@ function checkBombs(selectedPirate, cardName) {
   }
 }
 
+// function resetBoard() {
+//   shuffleCards();
+//   gridContainer.innerHTML = '';
+//   generateCards();
+// }
+
 //restart the game
-function reset() {
-  let cards = [];
+function restart() {
   shuffleCards();
   // const gridContainer = document.querySelector(".grid-container");
   gridContainer.innerHTML = '';
-  generateCards();
-  
-  // resetting every pirate's properties 
-  pirates.forEach((pirate)=> {
-    pirate.bombs=0,
-    pirate.treasures= 0,
-    pirate.scores= 150
-  
-  });
-  
-  //uncheck the radio button
-  document.querySelector('input[name="player-type"]:checked').checked= false;
-  //check on pirate status, should be reset for treasures, scores, bombs;
-  console.log(pirates);
 
+  generateCards();
+  currentPlayer = {
+     name: '',
+     color: '',
+     value: '',
+     bombs: 0,
+     treasure: 0,
+     scores: 100
+  };
   gameOver = false;
   // const pirateStatusEl = document.querySelector("pirate-status")
   pirateStatusEl = ''; //document.querySelector("pirate-status")
@@ -406,45 +389,15 @@ function reset() {
   document.querySelector("#pirate-status-id").textContent = ``;
 }
 
-const btnReset = document.getElementById("btn-reset");
-btnReset.addEventListener('click', start);
-
-function start() {
-  document.getElementById('opening-modal-id').style.display = 'none';
-}
-
 const btnModalStart = document.getElementById("btn-modal-start");
-btnModalStart.addEventListener('click', start) 
+btnModalStart.addEventListener('click', start)
 
-//buttons on the won modal
-function wonStart () {
-  document.querySelector(".won-modal").style.display = 'none';
-  reset();
+const btnRestart = document.getElementById("btn-restart");
+btnRestart.addEventListener('click', start);
+//the btn on the open-modal that will start the game;
+function start() {
+  // document.querySelector('.opening-modal-container').style.display='none';
+  // document.querySelector('.opening-modal-container').style.zIndex=-1;
+  document.getElementById('opening-modal-id').style.display = 'none';
+  restart();
 }
-const btnWonModalStart= document.getElementById('btn-won-modal-start');
-btnWonModalStart.addEventListener('click', wonStart)
-
-function wonSpan2() {
-  document.querySelector(".won-modal").style.display = 'none';
-  alert('Until next adventure--- So long!');
-}
-const btnWonModalSpan2 = document.querySelector('.won-modal-span2') 
-btnWonModalSpan2.addEventListener('click', wonSpan2);
-
-//buttons on the lost modal
-function lostStart () {
-  document.querySelector(".lost-modal").style.display = 'none';
-  reset();
-}
-
-const btnLostModalStart= document.getElementById('btn-lost-modal-start');
-btnLostModalStart.addEventListener('click', lostStart);
-
-document.getElementById('lost-modal-id').style.display='none';
-
-function lostSpan2() {
-  document.querySelector(".lost-modal").style.display = 'none';
-  alert('Until next adventure--- So long!');
-}
-const btnLostModalSpan2 = document.querySelector('.lost-modal-span2') 
-btnLostModalSpan2.addEventListener('click', lostSpan2);

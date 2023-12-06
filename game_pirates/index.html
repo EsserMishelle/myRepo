@@ -33,7 +33,7 @@
         <br>
         <h2>Ye feeling lucky for treasure? Click 'PLAY' to enter!</h2>
 
-        <button id="btn-modal-start" onclick="openingModal()">PLAY</button>
+        <button id="btn-modal-start">PLAY</button>
         <span onclick="document.getElementById('opening-modal-id').style.display='none'" class="opening-modal-span">&times;</span>
       </div>
     </div>
@@ -54,7 +54,7 @@
     <div class="grid-container"></div>
 
     <div class="actions">
-      <button id="btn-restart" onclick="start()">Restart</button>
+      <button id="btn-reset" onclick="reset()">Reset</button>
       <div class="wrapper">
         <label for="opt-1" class="option opt-1">
             <img src="/assets/red-pirate.jpg" id="red-pirate-id" alt="red pirate" class="piece-image red-pirate" draggable="true">
@@ -84,8 +84,10 @@
             <!-- <span class="won-modal-span1"></span> -->
             <img src="/assets/pirateTossingCoins.gif" class="pirate-gif" alt="pirate tossing coins">
             
-            <button id="btn-won-modal-start" onclick="openingModal()">PLAY</button>
-            <span onclick="document.getElementById('won-modal-id').style.display='none'" class="won-modal-span2">&times;</span>
+            <button id="btn-won-modal-start">RESET</button>
+            <span class="won-modal-span2">&times;</span>
+
+
         </div>
       </div>
     </div>      
@@ -97,8 +99,10 @@
             <img src="/assets/pirateThrowingTable.gif" class="pirate-gif" alt="pirate throwing a table">
             
             <!-- <p class = "lost-modal-p"></p> -->
-            <button id="btn-lost-modal-start" onclick="openingModal()">PLAY</button>
-            <span onclick="document.getElementById('lost-modal-id').style.display='none'" class="lost-modal-span2">&times;</span>
+            <button id="btn-lost-modal-start">RESET</button>
+            <span class="lost-modal-span2">&times;</span>
+            <!-- <button id="btn-lost-modal-start" onclick="openingModal()">RESET</button>
+            <span onclick="document.getElementById('lost-modal-id').style.display='none'" class="lost-modal-span2">&times;</span> -->
         </div>
       </div>
     </div>   
