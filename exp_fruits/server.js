@@ -42,21 +42,21 @@ app.use((req, rest, next) => {
 //index
 //index page for fruit
 app.get("/fruits", function (req, res) {
-  res.render("IndexFruits", { fruits: fruits });
+  res.render("./fruits/Index", { fruits: fruits });
 });
 //index page for veg
 app.get("/vegetables", function (req, res) {
-  res.render("IndexVegetables", { vegetables: vegetables });
+  res.render("./vegetables/Index.jsx", { vegetables: vegetables });
 });
 
 //New
 
 app.get("/fruits/new", (req, res) => {
-  res.render("NewFruits");
+  res.render("./fruits/New");
 });
 
 app.get("/vegetables/new", (req, res) => {
-  res.render("NewVegetables");
+  res.render("./vegetables/New");
 });
 //Delete
 
@@ -75,7 +75,7 @@ app.post("/fruits", (req, res) => {
   fruits.push(req.body);
   console.log(fruits);
 
-  res.redirect("/fruits");
+  res.redirect("./fruits");
   // res.send("data received");
 });
 
@@ -88,7 +88,7 @@ app.post("/vegetables", (req, res) => {
   vegetables.push(req.body);
   console.log(vegetables);
 
-  res.redirect("/vegetables");
+  res.redirect("./vegetables");
 });
 
 // app.post("/fruits", (req, res) => {
@@ -100,13 +100,13 @@ app.post("/vegetables", (req, res) => {
 //Show
 // createImageBitmap; //Edit
 app.get("/fruits/:indexOfFruitsArray", function (req, res) {
-  res.render("ShowFruits", {
+  res.render("./fruits/Show", {
     fruit: fruits[req.params.indexOfFruitsArray], //there will be a variable available inside the ejs file called fruit, its value is fruits[req.params.indexOfFruitsArray]
   });
 });
 
 app.get("/vegetables/:indexOfVegetablesArray", function (req, res) {
-  res.render("ShowVegetables", {
+  res.render("./vegetables/Show", {
     vegetables: vegetables[req.params.indexOfVegetablesArray],
   });
 });
