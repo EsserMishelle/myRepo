@@ -1,0 +1,24 @@
+
+
+@keyframes flash {
+    0%, 50%, 100% {
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
+}
+
+.flashing-warning {
+    animation: flash infinite;  /* Fix: Remove 'is' after flash */
+    color: red;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    height: 400px;
+    background-color: purple;
+}
+

@@ -1,0 +1,32 @@
+fille@DESKTOP-4JS80HJ MINGW64 ~
+$ cd Desktop
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop
+$ cd manipulate-the-dom/
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$ git add -A
+warning: in the working copy of 'pass-it-around_hw/package.json', LF will be replaced by CRLF the next time Git touches it
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$ git commit -m "pass-it-around"
+[main 5e64910] pass-it-around
+ 3 files changed, 41 insertions(+)
+ create mode 100644 pass-it-around_hw/.gitignore
+ create mode 100644 pass-it-around_hw/package.json
+ create mode 100644 pass-it-around_hw/server.js
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
+$ git push -u origin main
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 249 bytes | 249.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/EsserMishelle/myRepo
+   743c64c..5e64910  main -> main
+branch 'main' set up to track 'origin/main'.
+
+fille@DESKTOP-4JS80HJ MINGW64 ~/Desktop/manipulate-the-dom (main)
