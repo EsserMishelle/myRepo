@@ -52,9 +52,9 @@ app.get("/pokemon", function (req, res) {
 // // EDIT
 
 // //Show
-app.get("/pokemon/:indexOfPokemonArray", function (req, res) {
+app.get("/pokemon/:id", function (req, res) {
   res.render("Show", {
-    pokemon: pokemon[req.params.indexOfPokemonArray],
+    pokeItem: pokemon[req.params.id],
   });
 });
 

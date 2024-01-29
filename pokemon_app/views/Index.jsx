@@ -10,7 +10,7 @@ class Index extends React.Component {
     const { pokemon } = this.props;
     return (
       <div>
-        <h1 style={myStyle}>See All The Pokemon!'</h1>
+        <h1 style={myStyle}>See All The Pokemon!</h1>
 
         {/* <h1>See All The Pokemon!'</h1> */}
         {/* <nav>
@@ -23,7 +23,9 @@ class Index extends React.Component {
                 <a href={`/pokemon/${i}`}>
                   {/* {pokeItem.name}  --original names all lowered-case*/}
                   {pokeItem.name[0].toUpperCase() + pokeItem.name.slice(1)}
+                  <br />
                 </a>
+                {/* Img: {pokeItem.img}.jpg */}
               </li>
             );
           })}
