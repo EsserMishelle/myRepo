@@ -7,12 +7,24 @@ const app = express();
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 
+app.use(express.urlencoded({ extended: false }));
+//middleware -- ex checking to see if user is logged in (function in your route)
+app.use((req, rest, next) => {
+  console.log("I run for all routes");
+  next();
+});
+
 app.get("/", (req, res) => {
   res.send("Welcome to the Pokemon App!");
 });
 
-app.get("/pokemon/", (req, res) => {
-  res.send(pokemon);
+//send user to pokemon path
+// app.get("/pokemon/", (req, res) => {
+//   res.send(pokemon);
+// });
+
+app.get("/pokemon", function (req, res) {
+  res.render("./Index", { pokemon: pokemon });
 });
 
 // app.get("/fruits/:indexOfFruitsArray", (req, res) => {
