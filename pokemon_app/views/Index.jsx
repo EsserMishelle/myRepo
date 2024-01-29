@@ -11,6 +11,7 @@ class Index extends React.Component {
     return (
       <div>
         <h1 style={myStyle}>See All The Pokemon!'</h1>
+
         {/* <h1>See All The Pokemon!'</h1> */}
         {/* <nav>
           <a href="/pokemon/new"> Add a new Pokemon</a>
@@ -20,8 +21,8 @@ class Index extends React.Component {
             return (
               <li key={i}>
                 <a href={`/pokemon/${i}`}>
+                  {/* {pokeItem.name}  --original names all lowered-case*/}
                   {pokeItem.name[0].toUpperCase() + pokeItem.name.slice(1)}
-                  {/* {pokeItem.name} */}
                 </a>
               </li>
             );

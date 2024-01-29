@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 
 //changed it to use Index
 app.get("/pokemon", function (req, res) {
-  res.render("./Index", { pokemon: pokemon });
+  res.render("Index", { pokemon: pokemon });
 });
 
 ////INDUCES
@@ -52,9 +52,9 @@ app.get("/pokemon", function (req, res) {
 // // EDIT
 
 // //Show
-app.get("/pokemon/:id", function (req, res) {
-  res.render("./Show", {
-    pokemon: pokemon[req.params.id],
+app.get("/pokemon/:indexOfPokemonArray", function (req, res) {
+  res.render("Show", {
+    pokemon: pokemon[req.params.indexOfPokemonArray],
   });
 });
 
