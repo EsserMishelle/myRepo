@@ -17,7 +17,6 @@ class Show extends React.Component {
         </h2>
         <img src={pokeItem.img + ".jpg"} />
         <a href={"./"}>Back to Index</a>
-        {/* <a href={`/pokemon/${i}`}></a> */}
       </div>
     );
   }

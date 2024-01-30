@@ -1,7 +1,6 @@
 const express = require("express");
 const pokemon = require("./models/pokemon");
 
-// const vegetables = require("./models/vegetables.js");
 const app = express();
 
 app.set("view engine", "jsx");
@@ -36,13 +35,6 @@ app.get("/pokemon", function (req, res) {
 
 // //New
 
-// app.get("/fruits/new", (req, res) => {
-//   res.render("./fruits/New");
-// });
-
-// app.get("/vegetables/new", (req, res) => {
-//   res.render("./vegetables/New");
-// });
 // //Delete
 
 // //Update
