@@ -8,6 +8,6 @@
 }
 
 .flashing-warning {
-    animation: flash infinite;  /* Fix: Remove 'is' after flash */
+    animation: flash is infinite;  /* Fix: Remove 'is' after flash */
     color: red;
 }

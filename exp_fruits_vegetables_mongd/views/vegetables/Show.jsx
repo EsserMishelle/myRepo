@@ -1,4 +1,4 @@
-import React from "react";
+const React = require("react");
 
 class Show extends React.Component {
   render() {
@@ -18,6 +18,7 @@ class Show extends React.Component {
             " It is ready to eat"
           ) : (
             <span
+              className="flashing-warning"
               style={{
                 fontSize: "30px",
                 fontWeight: "bolder",
@@ -28,6 +29,9 @@ class Show extends React.Component {
             </span>
           )}
         </div>
+        <nav>
+          <a href="/vegetables">Back to Index</a>
+        </nav>
       </>
     );
   }
