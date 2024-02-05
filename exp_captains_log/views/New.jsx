@@ -6,7 +6,7 @@ class New extends React.Component {
     return (
       <DefaultLayout>
         <a href="/logs/New">
-          <button>Create A New log</button>
+          <button>Create A New Log</button>
         </a>
 
         <form action="/logs" method="POST">
@@ -14,18 +14,18 @@ class New extends React.Component {
             <legend>Create a New log</legend>
 
             <label htmlFor="title">
-              NAME:
+              Title:
               <input type="text" name="title" placeholder="Enter Log Litle" />
             </label>
 
             <label htmlFor="entry">
-              COLOR:
+              Entry:
               <input type="text" name="entry" placeholder="New Entry" />
             </label>
 
             <label htmlFor="shipIsBroken">
               {" "}
-              READY TO EAT:
+              Is Ship Broken:
               <input type="checkbox" name="shipIsBroken" />{" "}
             </label>
           </fieldset>

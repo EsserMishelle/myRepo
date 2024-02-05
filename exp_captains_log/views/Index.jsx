@@ -13,16 +13,20 @@ class Index extends React.Component {
           </a>
         </nav>
         <div>
-          {logs.map((log, i) => (
-            <article key={i}>
-              <a href={`/logs/${log._id}`}>
-                <h2>
-                  {log.name} - {log.entry} -{" "}
-                  {log.shipIsBroken ? "Ripe" : "Not Ripe Yuck Thats Nasty"}
-                </h2>
-              </a>
-            </article>
-          ))}
+          <ul>
+            {logs.map((log, i) => (
+              <li key={i}>
+                <a href={`/logs/${log._id}`}>
+                  <h2>
+                    {log.title} : {log.entry} {"-"}
+                    {log.shipIsBroken
+                      ? "Send a distress call!"
+                      : "We'll go on exploring the galaxy"}
+                  </h2>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </DefaultLayout>
     );
