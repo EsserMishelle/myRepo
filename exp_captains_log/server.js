@@ -55,16 +55,6 @@ app.get("/", (req, res) => {
 
 ////Seed route
 
-app.get("/logs/seed", (req, res) => {
-  const startLogs = [
-    { title: "Orange", entry: "orange", shipIsBroken: false },
-    { title: "Grape", entry: "purple", shipIsBroken: false },
-    { title: "Banana", entry: "orange", shipIsBroken: false },
-    { title: "Strawberry", entry: "red", shipIsBroken: false },
-    { title: "Coconut", entry: "brown", shipIsBroken: false },
-  ];
-});
-
 // INDUCES
 
 // Index
@@ -87,6 +77,23 @@ app.get("/logs", (req, res) => {
 
 app.get("/logs/new", (req, res) => {
   res.render("New");
+});
+
+// Create
+
+app.post("/logs", (req, res) => {
+  if (req.body.shipIsBroken) {
+    req.body.shipIsBroken = req.body.shipIsBroken === "on" ? true : false;
+  }
+
+  Log.create(req.body)
+    .then((createdLog) => {
+      res.redirect("/logs");
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
 });
 
 //////////////////////////////////////////////
