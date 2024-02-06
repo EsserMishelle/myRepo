@@ -17,12 +17,20 @@ class Index extends React.Component {
             {logs.map((log, i) => (
               <li key={i}>
                 <a href={`/logs/${log._id}`}>
-                  <h2>
-                    {log.title} : {log.entry} {"-"}
+                  <h2>{log.title} :</h2>{" "}
+                  <h4>
+                    {" "}
+                    {log.entry} {"-"}
                     {log.shipIsBroken
                       ? "Send a distress call!"
                       : "We'll go on exploring the galaxy"}
-                  </h2>
+                  </h4>
+                  <form
+                    action={`/logs/${log._id}?_method=DELETE`}
+                    method="POST"
+                  >
+                    <input type="submit" value="Delete" />
+                  </form>
                 </a>
               </li>
             ))}

@@ -8,16 +8,18 @@ class Show extends React.Component {
       <div>
         <article>
           <h1>Log Entry Detail</h1>
-          <h2 style={{ fontSize: "30px", fontWeight: "bolder", color: "blue" }}>
+          <h2
+            style={{ fontSize: "30px", fontWeight: "bolder", color: "black" }}
+          >
             {" "}
             {log.title}
           </h2>
-          <h4 style={{ fontSize: "30px", fontWeight: "bolder", color: "blue" }}>
+          <h4 style={{ fontSize: "20px", fontWeight: "bolder", color: "blue" }}>
             {log.entry}
           </h4>
           {log.shipIsBroken
-            ? "Send a distress call!"
-            : "We'll go on exploring the galaxy"}
+            ? "The ship needs major repair. Send a distress call!"
+            : "The ship is not broken. We'll go on exploring the galaxy"}
           {/* {log.timestamps} */}
         </article>
         <nav>

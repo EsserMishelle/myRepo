@@ -158,7 +158,17 @@ app.get("/logs/new", (req, res) => {
 });
 
 ////Delete
-
+app.delete("/logs/:id", (req, res) => {
+  Log.deleteOne({ _id: req.params.id })
+    .then((deleteInfo) => {
+      console.log(deleteInfo);
+      res.redirect("/logs");
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(400).json({ error });
+    });
+});
 ////Update
 
 //// Create
