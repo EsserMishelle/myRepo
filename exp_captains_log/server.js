@@ -55,7 +55,6 @@ app.get("/", (req, res) => {
 });
 
 ////Seed route
-////Seed route
 
 app.get("/logs/seed", (req, res) => {
   const startLogs = [
@@ -136,7 +135,6 @@ app.get("/logs/seed", (req, res) => {
 // INDUCES
 
 //// Index
-
 app.get("/logs", (req, res) => {
   // find all the logs
   Log.find({})
@@ -152,7 +150,6 @@ app.get("/logs", (req, res) => {
 });
 
 //// New
-
 app.get("/logs/new", (req, res) => {
   res.render("New");
 });
@@ -189,7 +186,18 @@ app.post("/logs", (req, res) => {
 });
 
 ////Edit
-
+app.get("/logs/:id/edit", (req, res) => {
+  Log.findOne({ _id: req.params.id })
+    .then((foundLog) =>
+      res.render("Edit", {
+        log: foundLog,
+      })
+    )
+    .catch((error) => {
+      console.error(error);
+      res.json({ error });
+    });
+});
 ///Show
 app.get("/logs/:id", (req, res) => {
   Log.findOne({ _id: req.params.id })

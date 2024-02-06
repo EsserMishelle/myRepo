@@ -25,6 +25,9 @@ class Index extends React.Component {
                       ? "Send a distress call!"
                       : "We'll go on exploring the galaxy"}
                   </h4>
+                  <a href={`/logs/${log._id}/edit`}>
+                    <button>Edit</button>
+                  </a>
                   <form
                     action={`/logs/${log._id}?_method=DELETE`}
                     method="POST"
