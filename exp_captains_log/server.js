@@ -166,8 +166,23 @@ app.delete("/logs/:id", (req, res) => {
       res.status(400).json({ error });
     });
 });
-////Update
 
+////Update
+app.put("/logs/:id", (req, res) => {
+  if (req.body.shipIsBroken) {
+    req.body.shipIsBroken = req.body.shipIsBroken === "on" ? true : false;
+  }
+
+  Log.updateOne({ _id: req.params.id }, req.body, { new: true })
+    .then((updateInfo) => {
+      console.log(updateInfo);
+      res.redirect(`/logs/${req.params.id}`);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(400).json({ error });
+    });
+});
 //// Create
 
 app.post("/logs", (req, res) => {

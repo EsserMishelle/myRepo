@@ -26,8 +26,12 @@ class Edit extends React.Component {
               placeholder="enter log name"
               defaultValue={log.entry}
               style={{
-                width: "700px",
-                height: "fit-content",
+                display: "flex",
+                flexDirection: "column",
+                justifyItems: "flex-start",
+                textJustify: "auto",
+                width: "800px",
+                height: "200px",
                 justifyContent: "center",
               }}
             />
