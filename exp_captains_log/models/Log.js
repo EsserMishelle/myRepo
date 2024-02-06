@@ -8,7 +8,7 @@ const logSchema = new mongoose.Schema(
 
     shipIsBroken: { type: Boolean, default: true },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 const Log = model("Log", logSchema);

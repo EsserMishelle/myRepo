@@ -11,6 +11,7 @@ const path = require("path");
 // const logs = require("./models/logs.js");
 const Log = require("./models/Log.js");
 const methodOverride = require("method-override");
+const { error } = require("console");
 /////////////////////////////////////////////
 // Create our express app Object Bine express-react-views templating engine
 /////////////////////////////////////////////
@@ -134,7 +135,7 @@ app.get("/logs/seed", (req, res) => {
 
 // INDUCES
 
-// Index
+//// Index
 
 app.get("/logs", (req, res) => {
   // find all the logs
@@ -150,13 +151,17 @@ app.get("/logs", (req, res) => {
     });
 });
 
-// New
+//// New
 
 app.get("/logs/new", (req, res) => {
   res.render("New");
 });
 
-// Create
+////Delete
+
+////Update
+
+//// Create
 
 app.post("/logs", (req, res) => {
   if (req.body.shipIsBroken) {
@@ -173,6 +178,21 @@ app.post("/logs", (req, res) => {
     });
 });
 
+////Edit
+
+///Show
+app.get("/logs/:id", (req, res) => {
+  Log.findOne({ _id: req.params.id })
+    .then((foundLog) => {
+      res.render("Show", {
+        log: foundLog,
+      });
+    })
+    .catch((error) => {
+      error(error);
+      res.json({ error });
+    });
+});
 //////////////////////////////////////////////
 // Server Listener
 //////////////////////////////////////////////
