@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import "../App.css"; // Import your CSS file
 
 export default function StartShipCard(props) {
-  console.log(props);
+  const [isClicked, setIsClicked] = useState(false);
+
+  function handleClick() {
+    setIsClicked(!isClicked);
+  }
+
   return (
-    <>
-      <div className="starship-card">
-        <h3>{props.name}</h3>
+    <div>
+      <div
+        className={`starship-card ${isClicked ? "clicked" : ""}`}
+        onClick={handleClick}
+      >
         <div className="starship-details">
-          <p>Model: {props.model}</p>
-          {/* <p>Films: {props.films}</p> */}
-          {/* <p>Class: {props.starship_class}</p> */}
-          {/* <p>Passengers: {props.passengers}</p> */}
+          <h3 className={`name ${isClicked ? "hidden" : ""}`}>{props.name}</h3>
+          <p className={`model ${isClicked ? "" : "hidden"}`}>
+            Model: {props.model}
+          </p>
+          <p className={`manufacturer ${isClicked ? "" : "hidden"}`}>
+            Manufacturer: {props.manufacturer}
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -9,12 +9,18 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: whitesmoke;
 }
+.heading{
+  margin-left: 25px;
+}
 .cards-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  
-  
+    
+}
+
+.hidden {
+  display: none;
 }
 .starship-card {
   flex-basis: 100px;
@@ -24,7 +30,7 @@ body {
   flex: 0 0 auto;   
   gap: 5px;      /* ADD */
   display: flex;          /* ADD */
-  flex-direction: column; /*ADD */
+  flex-direction: row; /*ADD */
   justify-content: center;
   /* justify-content: space-evenly; */
   align-items: center;
@@ -39,7 +45,8 @@ body {
 }
 
 .starship-details {
-  display: flex;          
+  display: flex;  
+  flex-direction: column;        
   position: relative;
   justify-content: center;
   align-items: center;

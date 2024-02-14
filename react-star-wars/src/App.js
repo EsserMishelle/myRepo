@@ -28,7 +28,8 @@ export default function App() {
     return <StarShipCard key={card.name} {...card} />;
   });
   return (
-    <div>
+    <div className="heading">
+      <h4>Click on a card to toggle details</h4>
       <section className="cards-list">{cardEl}</section>
     </div>
   );
