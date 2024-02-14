@@ -1,0 +1,91 @@
+*{
+  box-sizing: border-box;
+}
+.app-title {
+  justify-content: center;
+  color: rgb(221, 26, 221)
+}
+
+.heading{
+  margin-left: 25px;
+}
+
+.card-container {
+  text-decoration: none;
+}
+
+.card-container {
+  display: flex; 
+  flex-wrap: wrap;  
+}
+
+.card-link {
+  flex: 0 0 calc(17% - .25rem); 
+  margin-bottom: 1rem; 
+}
+
+  h2 a {
+    text-decoration: none;
+  }
+
+.summary-small-card {
+ 
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+  height: auto;
+  font-size: 22px;
+  flex: 0 0 auto;   
+  gap: 5px;     
+  display: flex;         
+  flex-direction:column; 
+  /* justify-content: center; */
+  /* justify-content: space-evenly; */
+  align-items: center;
+  position: relative;
+    background-color: rgb(45, 128, 45);
+  color: white;
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+  margin: 7px;  
+  padding: 17px;  
+
+}
+
+.detail-big-card {
+  width: 400px;
+  height: 500px;
+  display: flex;  
+  flex-direction: column;    
+  color: white;   
+  background-color: rgb(16, 116, 231);
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+
+}
+.detail-big-card h1 a {
+  text-decoration: none;
+}
+
+.detail-big-card h1 { 
+font-size: 45px; 
+justify-content: center;
+color: white; 
+
+ }
+ 
+ .detail-big-card h3 { 
+  font-size: 25px; 
+  justify-content: center;
+  color: white; 
+  text-transform: none;
+   }
+ 
+
+section {
+   margin-top: 10px;
+  margin-left: -30px;
+  padding: 20px 0px;
+
+}
