@@ -11,8 +11,7 @@ function CardDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const metaDataStarship = await AllStarships();
-        const starshipsData = metaDataStarship.results;
+        const starshipsData = await AllStarships();
         const selectedStarship = starshipsData.find(
           (starship) => starship.name === name
         );

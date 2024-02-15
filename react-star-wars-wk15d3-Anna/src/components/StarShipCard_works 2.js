@@ -41,22 +41,6 @@ function StarShipCard() {
     }
   };
 
-  const getPeviousPageNumber = () => {
-    if (previousPage) {
-      const pageNumber = previousPage.match(/(\d+)$/)[0];
-      return parseInt(pageNumber);
-    }
-    return null;
-  };
-
-  const handlePreviousPage = (event) => {
-    event.preventDefault(); // Prevent the default behavior of the link
-    const previousPageNumber = getPeviousPageNumber();
-    if (previousPageNumber) {
-      fetchStarshipsByPage(previousPageNumber);
-    }
-  };
-
   useEffect(() => {
     fetchStarshipsByPage(1);
   }, []);
@@ -85,12 +69,10 @@ function StarShipCard() {
       )}
       <div>
         {previousPage && (
-          <Link to="#" className="link" onClick={handlePreviousPage}>
+          <Link to={previousPage} className="link">
             Previous
           </Link>
         )}
-        <br />
-        <br />
         {nextPage && (
           <Link to="#" className="link" onClick={handleNextPage}>
             Next

@@ -28,8 +28,11 @@
     text-decoration: none;
   }
 
+.summary-small-card a{
+    text-decoration-line: none;
+  }
+
 .summary-small-card {
- 
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
   height: auto;
   font-size: 22px;
@@ -50,6 +53,9 @@
   padding: 17px;  
 
 }
+.detail-big-card a{
+  text-decoration-line: none;
+}
 
 .detail-big-card {
   width: 400px;
@@ -61,7 +67,8 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  padding: 3px;
+  padding: 23px;
+  text-decoration: none;
 
 }
 .detail-big-card h1 a {
