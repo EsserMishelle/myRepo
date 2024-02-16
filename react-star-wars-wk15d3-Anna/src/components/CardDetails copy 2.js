@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AllStarships from "../services/sw-api";
@@ -13,10 +14,11 @@ function CardDetails() {
   useEffect(() => {
     const fetchData = async (page) => {
       try {
-        setLoading(true); // Set loading state to true
-        const data = await AllStarships(page);
-        console.log("Fetched data:", data);
-        const starshipsData = data.starships; // Access starships data
+        setLoading(true);
+        // const data = await AllStarships(page);
+        const data = await AllStarships(currentPage); // Use currentPage here
+        const starshipsData = data.starships;
+        console.log(starshipsData);
         if (!starshipsData || starshipsData.length === 0) {
           console.error("No starships data found");
           return;
@@ -32,20 +34,17 @@ function CardDetails() {
       } catch (error) {
         console.error("Error fetching starships:", error);
       } finally {
-        setLoading(false); // Set loading state to false after fetching data
+        setLoading(false);
       }
     };
-    //   fetchData(currentPage);
-    // }, [name, currentPage]);
-
-    fetchData();
-  }, [name]);
+    console.log(`currentPage is ${currentPage}`);
+    fetchData(currentPage); // Pass currentPage to fetchData
+  }, [name, currentPage]);
 
   if (!starship) {
-    return <div>Loading...</div>;
+    return <div>No starship found with the name {name}</div>;
   }
 
-  // Destructure the starship object to access its properties
   const { crew, model, passengers, cargo_capacity } = starship;
 
   return (

@@ -62,7 +62,7 @@ function StarShipCard() {
       <br />
 
       {loading ? (
-        <div>Loading, please wait</div>
+        <div>Loading....</div>
       ) : (
         <div className="card-container">
           {starships.map((starship) => {

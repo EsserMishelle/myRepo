@@ -1,47 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import AllStarships from "../services/sw-api";
-import "../App.css";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+// import AllStarships from "../services/sw-api"; // You might not need this anymore
 
 function CardDetails() {
   const { name } = useParams();
   const [starship, setStarship] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchStarshipByName = async (starshipName) => {
+    setLoading(true);
+    try {
+      // Here, we'll fetch all starships and filter by name as an example workaround
+      let response = await fetch(`https://swapi.dev/api/starships`);
+      let data = await response.json();
+      let allStarships = data.results;
+
+      // If there's a next page, fetch those too - this is a simplified example
+      // In practice, you'd want to loop through all pages
+      while (data.next) {
+        response = await fetch(data.next);
+        data = await response.json();
+        allStarships = allStarships.concat(data.results);
+      }
+
+      const selectedStarship = allStarships.find(
+        (starship) => starship.name === starshipName
+      );
+      if (selectedStarship) {
+        setStarship(selectedStarship);
+      } else {
+        console.error("Starship not found:", name);
+      }
+    } catch (error) {
+      console.error("Error fetching starship:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const metaDataStarship = await AllStarships();
-        const starshipsData = metaDataStarship.results;
-        const selectedStarship = starshipsData.find(
-          (starship) => starship.name === name
-        );
-        setStarship(selectedStarship);
-      } catch (error) {
-        console.error("Error fetching starships:", error);
-      }
-    };
-    fetchData();
+    if (!name) {
+      console.log("Starship name is undefined");
+      return; // Exit early if name is undefined
+    }
+
+    fetchStarshipByName(name).catch(console.error);
   }, [name]);
 
-  if (!starship) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <div></div>;
   }
 
-  // Destructure the starship object to access its properties
-  const { crew, model, passengers, cargo_capacity } = starship;
+  if (!starship) {
+    return <div>No starship found with the name {name}</div>;
+  }
 
   return (
     <div>
-      <h1 className="app-title">Star Wars Starship Fleet</h1>
-      <h3 className="app-subtitle">Click card to return back</h3>
+      <h1 className="app-title">Starship Details</h1>
+      <h3>Click on the card to return back</h3>
       <div className="detail-big-card">
-        <Link to={"/"} className="card-link">
-          <h1 className="detail-big-card-title">{name}</h1>
-          <h3>Crew: {crew}</h3>
-          <h3>Model: {model}</h3>
-          <h3>Passengers: {passengers}</h3>
-          <h3>Cargo Capacity: {cargo_capacity}</h3>
+        <Link to="/" className="back-to-list-pretend-btn">
+          <h1>{starship.name}</h1>
+          <h3>Crew: {starship.crew}</h3>
+          <h3>Model: {starship.model}</h3>
+          <h3>Passengers: {starship.passengers}</h3>
+          <h3>Cargo Capacity: {starship.cargo_capacity}</h3>
         </Link>
       </div>
     </div>
